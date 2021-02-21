@@ -14,18 +14,9 @@ namespace btg_pqr_back.Core.Commands
 {
     public class CreatePqrCommand : IRequest<IGlobalResponse<CreatePqrCommand>>
     {
-        public int Id { get; set; }
-
         [Required(ErrorMessage = "El {0} es requerido")]
         [Display(Name = "Mensaje")]
         public string MessageUser { get; set; }
-
-        [Display(Name = "Respuesta")]
-        public string ResponseAdmin { get; set; }
-
-        public DateTime DateRequest { get; set; }
-
-        public DateTime? DateResponse { get; set; }
 
         [Required(ErrorMessage = "El {0} es requerido")]
         [Display(Name = "Nombre de usuario")]
@@ -36,8 +27,6 @@ namespace btg_pqr_back.Core.Commands
         public int Type { get; set; }
 
         public int? PqrId { get; set; }
-
-        public bool Active { get; set; }
     }
 
     public partial class CreatePqrCommandHandler : IRequestHandler<CreatePqrCommand, IGlobalResponse<CreatePqrCommand>>
@@ -74,6 +63,7 @@ namespace btg_pqr_back.Core.Commands
 
             globalResponse.Message = $"Dear {request.UserName}, your PCC is created Successfully";
             globalResponse.Data = request;
+            globalResponse.StatusCode = 200;
             return globalResponse;
         }
 
@@ -103,7 +93,7 @@ namespace btg_pqr_back.Core.Commands
             if (pqr != null && pqr.Active)
             {
                 throw new PqrException(400,
-                    $"Dear {pqr.UserName}, already have 1 claim pending, please wait {pqr.CountDays()} days for a response.");
+                    $"Dear {pqr.UserName}, already have 1 claim pending, please wait {Math.Ceiling(pqr.CountDays())} day(s) for a response.");
             }
         };
 
@@ -111,10 +101,16 @@ namespace btg_pqr_back.Core.Commands
         {
             if (typePqr == (int)PqrTypeEnum.Claim)
             {
+                if (pqr == null)
+                {
+                    throw new PqrException(404,
+                        $"You can't access to this resource, please try again with another info.");
+                }
+
                 if (!pqr.CanClaim())
                 {
                     throw new PqrException(400,
-                        $"Dear {pqr.UserName}, can't request a claim at this time, you must wait at least {pqr.CountDays()} days for a response.");
+                        $"Dear {pqr.UserName}, can't request a claim at this time, you must wait at least {Math.Ceiling(pqr.CountDays())} day(s) for a response.");
                 }
             }
         };

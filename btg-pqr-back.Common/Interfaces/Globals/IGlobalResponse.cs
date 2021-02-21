@@ -4,6 +4,6 @@
     {
         T Data { get; set; }
         string Message { get; set; }
-        bool Error { get; set; }
+        int StatusCode { get; set; }
     }
 }

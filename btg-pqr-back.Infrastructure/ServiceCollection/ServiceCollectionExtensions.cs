@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.IO;
 
@@ -91,16 +92,33 @@ namespace btg_pqr_back.Infrastructure.ServiceCollection
         {
             services
                 .AddControllers()
+                .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null)
                 .AddNewtonsoftJson(opt =>
                 {
                     opt.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
-
                     opt.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-
                     opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    opt.SerializerSettings.ContractResolver = new DefaultContractResolver();
                 });
 
             return services;
+        }
+
+        public static IServiceCollection AddCustomCors(this IServiceCollection services)
+        {
+            var cors = "mycors";
+
+            return services
+                .AddCors(opt =>
+                {
+                    opt.AddPolicy(cors, builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200", "*")
+                          .AllowAnyHeader()
+                          .AllowAnyOrigin()
+                          .AllowAnyMethod();
+                    });
+                });
         }
     }
 }

@@ -28,6 +28,7 @@ namespace btg_pqr_back.Api
             services.AddAutoMapper();
             services.AddLogger(Configuration);
             services.AddSwaggerDoc(Configuration);
+            services.AddCustomCors();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILog logger)
@@ -42,6 +43,8 @@ namespace btg_pqr_back.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("mycors");
 
             app.UseAuthorization();
 

@@ -21,7 +21,6 @@ namespace btg_pqr_back.Infrastructure.Repositories
             _entity = context.Set<PqrEntity>();
             _context = context;
         }
-
         public IEnumerable<PqrEntity> GetAll()
         {
             var list = _entity.ToList();
@@ -31,13 +30,11 @@ namespace btg_pqr_back.Infrastructure.Repositories
                 yield return item;
             }
         }
-
         public async Task<PqrEntity> GetByIdAsync(int id)
         {
             var entity = await _entity.FindAsync(id);
             return entity;
         }
-
         public async Task<int> AddAsync(PqrEntity entity)
         {
             entity.Active = true;
@@ -45,27 +42,23 @@ namespace btg_pqr_back.Infrastructure.Repositories
             await _entity.AddAsync(entity);
             return await _context.SaveChangesAsync();
         }
-
         public async Task<int> AddRangeAsync(IEnumerable<PqrEntity> entities)
         {
             await _entity.AddRangeAsync(entities);
             return await _context.SaveChangesAsync();
         }
-
         public async Task<int> UpdateAsync(PqrEntity entity)
         {
             _entity.Attach(entity);
             _entity.Update(entity);
             return await _context.SaveChangesAsync();
         }
-
         public async Task<int> UpdateRangeAsync(IEnumerable<PqrEntity> entities)
         {
             _entity.AttachRange(entities);
             _entity.UpdateRange(entities);
             return await _context.SaveChangesAsync();
         }
-
         public async Task<int> DeleteAsync(int id)
         {
             var entity = await _entity.FindAsync(id);
@@ -73,7 +66,6 @@ namespace btg_pqr_back.Infrastructure.Repositories
             _entity.Remove(entity);
             return await _context.SaveChangesAsync();
         }
-
         public IEnumerable<PqrEntity> GetAllByType(int type)
         {
             var list = _entity
@@ -85,7 +77,19 @@ namespace btg_pqr_back.Infrastructure.Repositories
                 yield return item;
             }
         }
+        public IEnumerable<PqrEntity> GetClaimByPqrId(int pqrId)
+        {
+            var list = _entity
+                .Join(_context.Claim, p => p.Id, c => c.PqrId, (P,C) => new { P,C })
+                .Where(x => x.C.PqrId == pqrId)
+                .Select(x => x.P)
+                .ToList();
 
+            foreach (var item in list)
+            {
+                yield return item;
+            }
+        }
         public IEnumerable<PqrEntity> GetAllBUserName(string username)
         {
             var list = _entity
@@ -97,14 +101,24 @@ namespace btg_pqr_back.Infrastructure.Repositories
                 yield return item;
             }
         }
-
         public async Task<PqrEntity> GetByUserAndActive(string userName)
         {
             return await _entity
-                .FirstOrDefaultAsync(x => 
+                .FirstOrDefaultAsync(x =>
                     x.UserName == userName &&
                     x.Active != false &&
                     x.Type == (int)PqrTypeEnum.Claim);
+        }
+        public IEnumerable<PqrEntity> GetAllPetitionsAndComplaintByUser(string userName)
+        {
+            var list = _entity.Where(x =>
+                (x.Type == (int)PqrTypeEnum.Petition || x.Type == (int)PqrTypeEnum.complaint)
+                && x.UserName.Equals(userName)).ToList();
+
+            foreach (var item in list)
+            {
+                yield return item;
+            }
         }
     }
 }
