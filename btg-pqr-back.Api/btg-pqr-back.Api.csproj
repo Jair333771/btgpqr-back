@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>btg_pqr_back.Api</RootNamespace>
+    <UserSecretsId>d8dfb170-7b96-4532-bbc1-8948853d5325</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>btg-pqr-back.Api.xml</DocumentationFile>
+    <!--Generate xml Doc for swagger-->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!--Disabled warning type of documentation-->
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\btg-pqr-back.Core\btg-pqr-back.Core.csproj" />
+    <ProjectReference Include="..\btg-pqr-back.Infrastructure\btg-pqr-back.Infrastructure.csproj" />
+  </ItemGroup>
+
+
+</Project>

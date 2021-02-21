@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "btg-pqr-back.Api", "btg-pqr-back.Api\btg-pqr-back.Api.csproj", "{A321666A-3A30-4F1A-86B1-B49B999161D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pqr.Api", "pqr.Api", "{7E9C0320-6363-4E97-8E70-7AB033C95729}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pqr.Core", "pqr.Core", "{B12B107F-DE72-438C-AA79-A04655DA3174}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pqr.Infrastructure", "pqr.Infrastructure", "{8EBC6535-5346-412B-8880-F134711140AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "btg-pqr-back.Core", "btg-pqr-back.Core\btg-pqr-back.Core.csproj", "{3B8976F2-9DBA-4A93-8440-2436C77B352A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "btg-pqr-back.Infrastructure", "btg-pqr-back.Infrastructure\btg-pqr-back.Infrastructure.csproj", "{3D8B9D45-BBFF-46EA-95FB-F762510DC1C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "btg-pqr-back.Common", "btg-pqr-back.Common\btg-pqr-back.Common.csproj", "{AD4A8311-E7F1-4379-A8F9-C5995326342E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A321666A-3A30-4F1A-86B1-B49B999161D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A321666A-3A30-4F1A-86B1-B49B999161D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A321666A-3A30-4F1A-86B1-B49B999161D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A321666A-3A30-4F1A-86B1-B49B999161D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B8976F2-9DBA-4A93-8440-2436C77B352A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B8976F2-9DBA-4A93-8440-2436C77B352A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B8976F2-9DBA-4A93-8440-2436C77B352A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B8976F2-9DBA-4A93-8440-2436C77B352A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D8B9D45-BBFF-46EA-95FB-F762510DC1C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D8B9D45-BBFF-46EA-95FB-F762510DC1C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D8B9D45-BBFF-46EA-95FB-F762510DC1C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D8B9D45-BBFF-46EA-95FB-F762510DC1C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD4A8311-E7F1-4379-A8F9-C5995326342E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD4A8311-E7F1-4379-A8F9-C5995326342E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD4A8311-E7F1-4379-A8F9-C5995326342E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD4A8311-E7F1-4379-A8F9-C5995326342E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A321666A-3A30-4F1A-86B1-B49B999161D2} = {7E9C0320-6363-4E97-8E70-7AB033C95729}
+		{3B8976F2-9DBA-4A93-8440-2436C77B352A} = {B12B107F-DE72-438C-AA79-A04655DA3174}
+		{3D8B9D45-BBFF-46EA-95FB-F762510DC1C0} = {8EBC6535-5346-412B-8880-F134711140AC}
+		{AD4A8311-E7F1-4379-A8F9-C5995326342E} = {7E9C0320-6363-4E97-8E70-7AB033C95729}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C29D3D3-BDE4-44C6-91BF-D816726196B4}
+	EndGlobalSection
+EndGlobal
